@@ -12,3 +12,9 @@ Packages: ggplot
 - Use subscripting to select subsets of data to analyze.
 - Use factors to analyze categorical data.
 - Produce polished information graphics for publication
+
+Learning Resources
+------
+1. CodeSchool, Learn R - http://tryr.codeschool.com/
+2. DataCamp, Introduction to R - https://www.datacamp.com/courses/free-introduction-to-r
+3. RStudio, Online Learning - http://www.rstudio.com/resources/training/online-learning/
