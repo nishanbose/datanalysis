@@ -1,0 +1,33 @@
+---
+title: "si618hw1_nishan"
+author: "Nishan"
+date: "Tuesday 17 March 2015"
+output: pdf_document
+---
+
+This is an R Markdown document.
+
+````{r,echo=FALSE}
+data = read.table("countrydata_withregion.tsv", header = TRUE, sep = "\t", quote = "\"", dec = ".", fill = TRUE, comment.char = "")
+head(data,n=15)
+#scatterplot
+data.scatter = data.frame(country=data$country, log_area=(log(data$area)), log_popu=(log(data$population)))
+#pie-area
+data.aggarea = aggregate(data$area, by = list(data$region), FUN = sum)
+data.aggpop = aggregate(data$population, by=list(data$region), FUN = function(x){sum(as.numeric(x))})
+data.density = data.frame(region=data.aggpop$Group.1, density=(data.aggpop$x/data.aggarea$x))
+sorted.des <- data.density[order(-data.density$density),]
+````
+
+--------
+##Scatter plot of log transformed data
+````{r, echo=FALSE}
+#scatterplot
+plot(data.scatter$log_area, data.scatter$log_popu)
+#pie-area
+pie(data.aggarea$x, labels=data.aggarea$Group.1, main="Area of Regions")
+#pie-population
+pie(data.aggpop$x, labels=data.aggpop$Group.1, main="Population of Regions")
+#pop-per-sq
+barplot(sorted.des$density, names.arg=sorted.des$region, cex.names=0.40, xlab="Visualization of Population per sq km of Regions")
+````
