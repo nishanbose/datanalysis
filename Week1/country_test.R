@@ -1,7 +1,0 @@
-library(ggplot2)
-data = read.csv("countrydata_test.csv")
-qplot(data$area, data$population)
-data.agg = aggregate(data$area, by=list(data$region), FUN=sum)
-pie(data.agg$x, labels=data.agg$Group.1)
-data.new = data.frame(country=data$country, log_area=sqrt(data$area), log_popu=(log(data$population)))
-barplot(data.new$log_area, names.arg=data.new$country)
